@@ -1,0 +1,24 @@
+<h4 >Employee Register</h4>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+  <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id">
+<div class="bx--form-item form-group">
+    <input id="text-input-3" name="fullName" #fullName="ngModel" [(ngModel)]="service.formData.fullName" type="text" class="bx--text-input " placeholder="Full Name*" required>
+    <div *ngIf ="fullName.touched && fullName.invalid" class="validation-error">This field is required</div>
+  </div>
+  <div class="bx--form-item form-group">
+      <input id="text-input-3" name="designation" #designation="ngModel" [(ngModel)]="service.formData.designation" type="text" class="bx--text-input" placeholder="Designation">
+      <label for="text-input-3" class="bx--label"></label>
+    </div>
+    <div class="bx--form-item form-group">
+        <input id="text-input-3" name="empCode" #empCode="ngModel" [(ngModel)]="service.formData.empCode" type="text" class="bx--text-input" placeholder="EmpCode">
+      </div>
+      <div class="bx--form-item form-group">
+          <input id="text-input-3" name="mobile" #mobile="ngModel" [(ngModel)]="service.formData.mobile" type="text" class="bx--text-input" placeholder="Mobile Number">
+          <label for="text-input-3" class="bx--label"></label>
+        </div>
+  <div class="bx--form-item form-group">
+    <button class="bx--btn bx--btn--primary" [disabled]="form.invalid" type="submit">Submit</button>
+  </div>
+</form>
+
+ 

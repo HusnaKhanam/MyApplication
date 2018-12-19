@@ -1,0 +1,100 @@
+<body><div class="bx--data-table-v2-container" data-table-v2>
+    <h4 class="bx--data-table-v2-header">Registered Employees</h4>
+    <section class="bx--table-toolbar">
+  
+      <div class="bx--toolbar-search-container">
+        <div data-search class="bx--search bx--search--sm bx--search--light" role="search">
+          <svg class="bx--search-magnifier" width="16" height="16" viewBox="0 0 16 16">
+            <path d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zm4.936-1.27l4.563 4.557-.707.708-4.563-4.558a6.5 6.5 0 1 1 .707-.707z"
+              fill-rule="nonzero" />
+          </svg>
+          <label id="search-input-label-1" class="bx--label" for="search__input-2">Search by Name</label>
+          <input class="bx--search-input" type="text" id="search__input-2" role="search" placeholder="Search" [(ngModel)]="searchTerm" aria-labelledby="search-input-label-1">
+          <button class="bx--search-close bx--search-close--hidden" title="Clear search input" aria-label="Clear search input">
+            <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 6.586L5.879 4.464 4.464 5.88 6.586 8l-2.122 2.121 1.415 1.415L8 9.414l2.121 2.122 1.415-1.415L9.414 8l2.122-2.121-1.415-1.415L8 6.586zM8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"
+                fill-rule="evenodd" />
+            </svg>
+          </button>
+        </div>
+      </div>
+  
+    </section>
+  
+  <table class="bx--data-table-v2 table table-hover">
+    <thead>
+      <tr>
+          <th>
+                <span class="bx--table-header-label"></span>
+                                </th>
+          <th>
+                <button class="bx--table-sort-v2" data-event="sort">
+                  <span class="bx--table-header-label">Name</span>
+                </button>
+                    </th>
+          <th>
+                <button class="bx--table-sort-v2" data-event="sort">
+                  <span class="bx--table-header-label">Designation</span>
+                </button>
+                    </th>
+          <th>
+                <button class="bx--table-sort-v2" data-event="sort">
+                  <span class="bx--table-header-label">Employee Code</span>
+                </button>
+                    </th>
+          <th>
+                <button class="bx--table-sort-v2" data-event="sort">
+                  <span class="bx--table-header-label">Mobile Number</span>
+                </button>
+                    </th>
+                    <th>
+                        <button class="bx--table-sort-v2" data-event="sort" >
+                          <span class="bx--table-header-label">Delete</span>
+                        </button>
+                            </th>
+          <th>
+                 <button class="bx--table-sort-v2" data-event="sort">
+                   <span class="bx--table-header-label">Edit</span>
+                </button>
+                    </th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr class="bx--parent-row-v2" *ngFor="let emp of filteredEmployees" data-parent-row>
+                <td></td>
+                <td >{{emp.fullName}}</td>
+                <td >{{emp.designation}}</td>
+                <td >{{emp.empCode}}</td>
+                <td >{{emp.mobile}}</td> 
+                <td><a class="btn" (click)="onDelete(emp.id)" data-toggle="modal" data-modal-target="#delete-confirmation-modal" ><svg width="12" height="16" viewBox="0 0 12 16"><path d="M11 4v11c0 .6-.4 1-1 1H2c-.6 0-1-.4-1-1V4H0V3h12v1h-1zM2 4v11h8V4H2z"></path><path d="M4 6h1v7H4zm3 0h1v7H7zM3 1V0h6v1z"></path></svg></a>
+                <div data-modal id="delete-confirmation-modal" class="bx--modal " role="dialog" aria-modal="true" aria-labelledby="delete-confirmation-modal-label" aria-describedby="delete-confirmation-modal-heading" tabindex="-1">
+                    <div class="bx--modal-container">
+                      <div class="bx--modal-header">
+                        <p class="bx--modal-header__heading bx--type-beta" id="delete-confirmation-modal-heading">Delete</p>
+                        <button class="bx--modal-close" type="button" data-modal-close aria-label="close modal" >
+                          <svg class="bx--modal-close__icon" width="10" height="10" viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+                            <title>Close Modal</title>
+                            <path d="M6.32 5L10 8.68 8.68 10 5 6.32 1.32 10 0 8.68 3.68 5 0 1.32 1.32 0 5 3.68 8.68 0 10 1.32 6.32 5z" fill-rule="nonzero"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                      <div class="bx--modal-content">
+                        <p >Are you sure you want to delete?</p>
+                      </div>
+                  
+                      <div class="bx--modal-footer">
+                        <button class="bx--btn bx--btn--secondary" type="button" data-modal-close>Cancel</button>
+                        <button class="bx--btn bx--btn--primary" type="button" (click)="deleteEmployee()"  data-modal-primary-focus>Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td><a class="btn"(click)="onEdit(emp)"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M7.926 3.38L1.002 9.72V12h2.304l6.926-6.316L7.926 3.38zm.738-.675l2.308 2.304 1.451-1.324-2.308-2.309-1.451 1.329zM.002 9.28L9.439.639a1 1 0 0 1 1.383.03l2.309 2.309a1 1 0 0 1-.034 1.446L3.694 13H.002V9.28zM0 16.013v-1h16v1z"></path></svg></a></td>         
+                    </tr>
+    </tbody>
+  </table>
+  
+  </div>
+  
+    </body>
