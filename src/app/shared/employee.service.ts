@@ -9,7 +9,8 @@ export class EmployeeService {
   formData : Employee;
 
   constructor(private firestore:AngularFirestore) { }
-
+  
+/*Function to get added employees list from firebase database*/
   getEmployees(){
     let listOfEmployees = this.firestore.collection('employees').snapshotChanges();
    return listOfEmployees;

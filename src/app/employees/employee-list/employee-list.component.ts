@@ -4,7 +4,7 @@ import { Employee } from 'src/app/shared/employee.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ToastrService } from 'ngx-toastr';
 import { Modal} from 'carbon-components';
-declare var $: any;
+
 
 @Component({
   selector: 'app-employee-list',
@@ -16,6 +16,9 @@ export class EmployeeListComponent implements OnInit {
   filteredEmployees : Employee[];
   private _searchTerm:string;
   private contentDeleteId;
+
+  /*getter and setter for filter*/
+
   get searchTerm(): string{
     return this._searchTerm;
   }
@@ -34,6 +37,8 @@ export class EmployeeListComponent implements OnInit {
 
   ngOnInit() {
     this.filteredEmployees= this.list;
+    /*get data from database through service
+    *store property id as class Employee*/
     this.service.getEmployees().subscribe(actionArray => {
       this.list = actionArray.map(item => {
         return {
@@ -47,7 +52,7 @@ export class EmployeeListComponent implements OnInit {
   onEdit(emp:Employee){
     this.service.formData=Object.assign({},emp);
   }
-  
+  /*to invoke delete Modal*/
   onDelete(id: string) {
     this.contentDeleteId = id;
     let modalInstance = Modal.create(document.getElementById('delete-confirmation-modal'));
@@ -55,7 +60,7 @@ export class EmployeeListComponent implements OnInit {
     // $(document).ready(function(){  
     //       $("#delete-confirmation-modal").modal();
   }
-  
+  /*delete specific selected row*/
   deleteEmployee(){
     const id = this.contentDeleteId;
     this.firestore.doc('employees/' + id).delete();

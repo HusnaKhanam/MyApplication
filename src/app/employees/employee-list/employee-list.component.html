@@ -20,6 +20,7 @@
       </div>
   
     </section>
+    <!--Data Table-->
   
   <table class="bx--data-table-v2 table table-hover">
     <thead>
@@ -67,6 +68,7 @@
                 <td >{{emp.empCode}}</td>
                 <td >{{emp.mobile}}</td> 
                 <td><a class="btn" (click)="onDelete(emp.id)" data-toggle="modal" data-modal-target="#delete-confirmation-modal" ><svg width="12" height="16" viewBox="0 0 12 16"><path d="M11 4v11c0 .6-.4 1-1 1H2c-.6 0-1-.4-1-1V4H0V3h12v1h-1zM2 4v11h8V4H2z"></path><path d="M4 6h1v7H4zm3 0h1v7H7zM3 1V0h6v1z"></path></svg></a>
+                  <!--Delete Modal  -->
                 <div data-modal id="delete-confirmation-modal" class="bx--modal " role="dialog" aria-modal="true" aria-labelledby="delete-confirmation-modal-label" aria-describedby="delete-confirmation-modal-heading" tabindex="-1">
                     <div class="bx--modal-container">
                       <div class="bx--modal-header">
@@ -96,5 +98,4 @@
   </table>
   
   </div>
-  
-    </body>
+ </body>

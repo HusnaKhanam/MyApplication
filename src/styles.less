@@ -5,12 +5,16 @@
 @validationMargin:.25rem;
 @validationFont:80%;
 @pointerCursor:pointer;
-
+@marginTop:.04;
 
 div.validation-error{
     width: @validationWidth;
     margin-top: @validationMargin;
     font-size: @validationFont;
     color: @borderColor;
+}
+
+.margin-top{
+    margin-top:percentage(@marginTop)
 }
 

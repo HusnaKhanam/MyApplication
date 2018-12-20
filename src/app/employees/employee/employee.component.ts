@@ -19,6 +19,7 @@ export class EmployeeComponent implements OnInit {
     this.resetForm();
   }
 
+  /*function to reset form after creating and updating form*/
   resetForm(form?: NgForm) {
     if (form != null)
       form.resetForm();
@@ -30,7 +31,7 @@ export class EmployeeComponent implements OnInit {
       mobile: '',
     }
   }
-
+/* submit the data to be added into database having 'employees' as the data collection array*/
   onSubmit(form: NgForm){
     let data = Object.assign({},form.value);
     delete data.id;
