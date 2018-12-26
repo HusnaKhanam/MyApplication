@@ -1,21 +1,70 @@
 <h4 >Employee Register</h4>
-<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-  <input type="hidden" name="id" #id="ngModel" [(ngModel)]="service.formData.id">
+<form  (ngSubmit)="onSubmit(form)" novalidate [formGroup]="form">
+  <input type="hidden" name="id" >
 <div class="bx--form-item form-group">
-    <input id="text-input-3" name="fullName" #fullName="ngModel" [(ngModel)]="service.formData.fullName" type="text" class="bx--text-input " placeholder="Full Name*" required>
-    <div *ngIf ="fullName.touched && fullName.invalid" class="validation-error">This field is required</div>
+    <input id="text-input-3" formControlName="fullName"  type="text" class="bx--text-input " placeholder="Full Name*" >
+  </div>
+  <div *ngIf="form.get('fullName').touched && form.get('fullName').invalid" class="bx--inline-notification__subtitle Error">
+    <div *ngIf = "form.get('fullName').hasError('required')">
+      Name is Required
+    </div>
+    <div *ngIf = "form.get('fullName').hasError('pattern')">
+      Invalid Name !
+    </div>
   </div>
   <div class="bx--form-item form-group">
-      <input id="text-input-3" name="designation" #designation="ngModel" [(ngModel)]="service.formData.designation" type="text" class="bx--text-input" placeholder="Designation">
+      <input id="text-input-3" formControlName="designation"  type="text" class="bx--text-input" placeholder="Designation*" >
       <label for="text-input-3" class="bx--label"></label>
     </div>
+    <div *ngIf="form.get('designation').touched && form.get('designation').invalid" class="bx--inline-notification__subtitle Error">
+      <div *ngIf = "form.get('designation').hasError('required')">
+        Designation is Required
+      </div>
+      <div *ngIf = "form.get('designation').hasError('pattern')">
+        Invalid Designation !
+      </div>
+    </div>
     <div class="bx--form-item form-group">
-        <input id="text-input-3" name="empCode" #empCode="ngModel" [(ngModel)]="service.formData.empCode" type="text" class="bx--text-input" placeholder="EmpCode">
+        <input id="text-input-3" formControlName="Email"  type="text" class="bx--text-input" placeholder="Email*" >
+      </div>
+      <div *ngIf="form.get('Email').touched && form.get('Email').invalid" class="bx--inline-notification__subtitle Error">
+        <div *ngIf = "form.get('Email').hasError('required')">
+          Email is Required
+        </div>
+        <div *ngIf = "form.get('Email').hasError('email') && !form.get('Email').hasError('required')">
+          Invalid Email!
+        </div>
       </div>
       <div class="bx--form-item form-group">
-          <input id="text-input-3" name="mobile" #mobile="ngModel" [(ngModel)]="service.formData.mobile" type="text" class="bx--text-input" placeholder="Mobile Number">
+          <input id="text-input-3" formControlName="mobile"  type="text" class="bx--text-input" placeholder="Mobile Number*" >
           <label for="text-input-3" class="bx--label"></label>
         </div>
+        <div *ngIf="form.get('mobile').touched && form.get('mobile').invalid" class="bx--inline-notification__subtitle Error">
+          <div *ngIf = "form.get('mobile').hasError('required')">
+            Contact is Required
+          </div>
+          <div *ngIf = "form.get('mobile').hasError('minlength') && !form.get('mobile').hasError('pattern')">
+            Less than 10 digits !
+          </div>
+          <div *ngIf = "form.get('mobile').hasError('maxlength') && !form.get('mobile').hasError('pattern')">
+            More than 10 digits !
+          </div>
+          <div *ngIf = "form.get('mobile').hasError('pattern')">
+            Invalid Contact !
+          </div>
+        </div>
+        <div *ngIf = "form.invalid && form.touched" data-notification class="bx--inline-notification bx--inline-notification--error" role="alert">
+          <div class="bx--inline-notification__details">
+              <svg class="bx--inline-notification__icon" width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16zM3.293 4.707l8 8 1.414-1.414-8-8-1.414 1.414z" fill-rule="evenodd" />
+              </svg>
+            <div class="bx--inline-notification__text-wrapper">
+              <p class="bx--inline-notification__title">Error</p>
+              <p class="bx--inline-notification__subtitle">Please fill all required fields !</p>
+            </div>
+          </div>
+        </div>
+        
   <div class="bx--form-item form-group">
     <button class="bx--btn bx--btn--primary" [disabled]="form.invalid" type="submit">Submit</button>
   </div>

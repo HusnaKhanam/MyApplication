@@ -1,13 +1,26 @@
-<div class="container-fluid">
-  <div class="row">
+<div class="bx--grid">
+  <div class="bx--row">
       <!--<h2 class="page-title"></h2>-->
   </div>
-  <div class="col-md-5 margin-top">
+  <nav class="bx--breadcrumb bx--breadcrumb--no-trailing-slash" aria-label="breadcrumb">
+    <div class="bx--breadcrumb-item">
+        <a routerLink = "/RegisterEmployee" class="bx--link">Register Employee</a>
+    </div>
+    <div class="bx--breadcrumb-item">
+        <a routerLink = "/EmployeeList" class="bx--link">Employee List</a>
+    </div>
+    <div class="bx--breadcrumb-item">
+        <a routerLink = "/FeedBack" class="bx--link">Feed Back</a>
+    </div>
+</nav>
+
+  <!--<div class="col-md-5 margin-top">
     <app-employee></app-employee>
   </div>
   <div class="row">
     <div class ="col-md-12 margin-top">
       <app-employee-list></app-employee-list>
   </div>
-  </div>
+  </div>-->
 </div>
+<router-outlet></router-outlet>
