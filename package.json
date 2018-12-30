@@ -26,6 +26,7 @@
     "carbon-components-angular": "^2.5.0",
     "core-js": "^2.5.4",
     "firebase": "^5.7.0",
+    "ng6-breadcrumbs": "^1.0.7",
     "ngx-toastr": "^9.1.1",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",

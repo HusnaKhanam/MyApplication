@@ -4,6 +4,7 @@ import { Employee } from 'src/app/shared/employee.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { ToastrService } from 'ngx-toastr';
 import { Modal} from 'carbon-components';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -33,7 +34,8 @@ export class EmployeeListComponent implements OnInit {
   }
   constructor(private service:EmployeeService,
     private firestore:AngularFirestore,
-    private toastr:ToastrService) { }
+    private toastr:ToastrService,
+    private _router:Router) { }
 
   ngOnInit() {
     this.filteredEmployees= this.list;
@@ -49,8 +51,9 @@ export class EmployeeListComponent implements OnInit {
       this.filteredEmployees= this.list;
     });
   }
-  onEdit(emp:Employee){
-    this.service.formData=Object.assign({},emp);
+  onEdit(empId:string){
+    this._router.navigate(['/RegisterEmployee',empId]);
+    //this.service.formData=Object.assign({},emp);
   }
   /*to invoke delete Modal*/
   onDelete(id: string) {

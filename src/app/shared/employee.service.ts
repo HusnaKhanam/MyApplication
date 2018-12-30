@@ -13,7 +13,10 @@ export class EmployeeService {
 /*Function to get added employees list from firebase database*/
   getEmployees(){
     let listOfEmployees = this.firestore.collection('employees').snapshotChanges();
-   return listOfEmployees;
-   
+   return listOfEmployees;   
   }
+getEmployeeDetails(id:string){
+    let employeeId = this.firestore.collection('employees').doc(id).valueChanges();
+    return employeeId;
+  }  
 }
