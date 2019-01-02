@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Employee } from './employee.model';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class EmployeeService {
   formData : Employee;
 
-  constructor(private firestore:AngularFirestore) { }
+  constructor(private firestore:AngularFirestore,
+    private http:HttpClient) { }
   
 /*Function to get added employees list from firebase database*/
   getEmployees(){

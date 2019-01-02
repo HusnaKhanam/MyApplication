@@ -1,3 +1,61 @@
-<p>
-  feed-back works!
-</p>
+<div class="bx--grid">
+     <div class="bx--row">
+     <div class = "bx--col-xs-6">
+    <form  (ngSubmit)="onSubmit()" novalidate [formGroup]="form">
+    <input type="hidden" name="id" >
+  <div class="bx--form-item form-group">
+      <input name="tags-1" id="text-input-3" formControlName="fullName"  type="text" class="bx--text-input " placeholder="Enter your Name" >
+      <label for="select-id" class="bx--label">Name*</label>
+    </div>
+    <div *ngIf="form.get('fullName').touched && form.get('fullName').invalid" class="bx--inline-notification__subtitle Error">
+      <div *ngIf = "form.get('fullName').hasError('required')">
+        Name is Required
+      </div>
+      <div *ngIf = "form.get('fullName').hasError('pattern')">
+        Invalid Name !
+      </div>
+    </div>
+    <div class="bx--form-item form-group">
+        <input id="text-input-3" formControlName="Email"  type="text" class="bx--text-input" placeholder="Enter your Email" >
+        <label for="select-id" class="bx--label">Email*</label>
+      </div>
+      <div *ngIf="form.get('Email').touched && form.get('Email').invalid" class="bx--inline-notification__subtitle Error">
+        <div *ngIf = "form.get('Email').hasError('required')">
+          Email is Required
+        </div>
+        <div *ngIf = "form.get('Email').hasError('email') && !form.get('Email').hasError('required')">
+          Invalid Email!
+        </div>
+      </div>
+      <div class="bx--form-item form-group">
+          <div class="bx--select">
+            <select id="select-id" class="bx--select-input" formControlName="category">
+                  <option *ngFor="let choice of category;" [value]="choice.id" class="bx--select-option" value="">{{choice.value}}</option>
+            </select>
+              <svg class="bx--select__arrow" width="10" height="5" viewBox="0 0 10 5">
+                <path d="M0 0l5 4.998L10 0z" fill-rule="evenodd" />
+              </svg>
+              <label for="select-id" class="bx--label">which service area do you have feedback for?</label>
+          </div>
+          <div *ngIf="submitted && form.controls['category'].errors" class="Error">
+              <div *ngIf="form.controls['category'].errors.required">Category is required.</div>
+          </div>
+        </div>
+        <div class="bx--form-item form-group">
+            <textarea id="text-area-2" class="bx--text-area" rows="4" cols="50" formControlName="msg"  minlength="8" maxlength="100" placeholder="Write your valuable feedback"
+            required></textarea>
+            <label for="text-area-2" class="bx--label">Please leave your feedback below</label>
+        </div>
+        <div *ngIf="form.get('msg').touched && form.get('msg').invalid" class="Error">
+            <div *ngIf="form.get('msg').hasError('required')">Message is required.</div>
+            <div *ngIf="form.get('msg').hasError('minlength') && !form.get('msg').hasError('pattern')">Message must be at least 8 characters long.</div>
+            <div *ngIf="form.get('msg').hasError('maxlength') && !form.get('msg').hasError('pattern')">Message must be at most 100 characters long.</div>
+        </div>
+        <div class="bx--form-item form-group">
+            <button class="bx--btn bx--btn--primary" [disabled]="form.invalid" type="submit">Submit</button>
+          </div>
+        </form>
+        </div>
+        </div>
+        </div>
+    

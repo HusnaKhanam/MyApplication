@@ -16,7 +16,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { PageNotFoundComponent } from './employees/page-not-found/page-not-found.component';
 import { FeedBackComponent } from './employees/feed-back/feed-back.component';
 import { routingComponents, AppRoutingModule } from './app-routing.module';
-
+import { HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -38,7 +38,9 @@ import { routingComponents, AppRoutingModule } from './app-routing.module';
     BrowserAnimationsModule,
     NgbModule.forRoot(),
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
+  
     
   ],
   providers: [EmployeeService],
